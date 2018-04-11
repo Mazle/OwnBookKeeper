@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">OwnBookKeeper</string>
+    <string name="cash_source">Источники</string>
+    <string name="expensives">Списать деньги</string>
+    <string name="shop_list">Списки покупок</string>
+    <string name="targets">Цели</string>
+</resources>
