@@ -5,10 +5,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.user.ownbookkeeper.Presenter.MainFunctionsFragmentPresenter;
 import com.example.user.ownbookkeeper.R;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,4 +19,5 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.main_activity_frame,mainFragment);
         ft.commit();
     }
+
 }

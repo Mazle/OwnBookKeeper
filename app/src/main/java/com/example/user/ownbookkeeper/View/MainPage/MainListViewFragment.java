@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.user.ownbookkeeper.Presenter.MainFunctionsFragmentPresenter;
 import com.example.user.ownbookkeeper.R;
 
 import butterknife.BindView;
@@ -23,13 +24,15 @@ public class MainListViewFragment extends Fragment{
     private Unbinder unbinder;
     @BindView(R.id.rv_for_main_fragment)
     RecyclerView rvMain;
+    MainFunctionsFragmentPresenter presenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.main_list_fragment, container, false);
         unbinder = ButterKnife.bind(this, v);
-        rvMain.setAdapter(new MainRVAdapter(getActivity()));
+        presenter = new MainFunctionsFragmentPresenter(getActivity());
+        rvMain.setAdapter(new MainRVAdapter(presenter));
         rvMain.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
     }

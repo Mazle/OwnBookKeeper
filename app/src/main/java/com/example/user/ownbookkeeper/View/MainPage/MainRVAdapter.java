@@ -6,9 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.user.ownbookkeeper.Presenter.MainFunctionsFragmentPresenter;
 import com.example.user.ownbookkeeper.R;
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 import java.util.HashMap;
+import java.util.concurrent.Callable;
 
 /**
  * Created by user on 09.04.2018.
@@ -16,36 +21,29 @@ import java.util.HashMap;
 
 public class MainRVAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
-    private HashMap<Integer, String> namesOfTitles;
-    //для доступа к файлам ресурсов
-    Context context;
+    MainFunctionsFragmentPresenter presenter;
+    PublishSubject<Integer> itemClickSubject;
 
-    public MainRVAdapter(Context context) {
-        this.context = context;
-        initializeTitles();
-    }
+    public MainRVAdapter(MainFunctionsFragmentPresenter presenter) {
+        this.presenter = presenter;
+        itemClickSubject = PublishSubject.create();
+        itemClickSubject.subscribe(presenter.getClickObserver());
+     }
 
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_activity_card,parent,false);
-        return new MainViewHolder(itemView);
+        return new MainViewHolder(itemView, itemClickSubject);
     }
 
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
-        holder.setTitle(namesOfTitles.get(position));
+        holder.setTitle(presenter.getItemsList().get(position).getmItemName());
     }
 
     @Override
     public int getItemCount() {
-        return namesOfTitles.size();
+        return presenter.getItemsList().size();
     }
 
-    void initializeTitles() {
-        this.namesOfTitles  = new HashMap<Integer, String>();
-        namesOfTitles.put(0, context.getString(R.string.cash_source));
-        namesOfTitles.put(1, context.getString(R.string.expensives));
-        namesOfTitles.put(2, context.getString(R.string.targets));
-        namesOfTitles.put(3, context.getString(R.string.shop_list));
-    }
 }
