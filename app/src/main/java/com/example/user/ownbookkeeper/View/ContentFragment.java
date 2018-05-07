@@ -66,9 +66,11 @@ public abstract class ContentFragment<P extends ContentRecyclerCardPresenter> ex
     }
 
     private void initializeLayoutManager() {
-        LinearLayoutManager linearLM = new LinearLayoutManager(getActivity());
-        linearLM.setOrientation(LinearLayoutManager.HORIZONTAL);
-        this.layoutManager=linearLM;
+        if (this.layoutManager==null) {
+            LinearLayoutManager linearLM = new LinearLayoutManager(getActivity());
+            linearLM.setOrientation(LinearLayoutManager.HORIZONTAL);
+            this.layoutManager = linearLM;
+        }
     }
 
     public void setPresenter(P presenter) {

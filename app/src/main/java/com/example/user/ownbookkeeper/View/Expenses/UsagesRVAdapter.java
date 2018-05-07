@@ -23,6 +23,11 @@ public class UsagesRVAdapter extends ContentRVAdapter<ExpenseActivityPresenter> 
     }
 
     @Override
+    public int getItemCount() {
+        return presenter.getUsagesList().size();
+    }
+
+    @Override
     protected void setObserverForAdapter() {
         Log.v("inAdapter",presenter.getUsagesClickObserver().toString());
         Log.v("inAdapter",presenter.toString());

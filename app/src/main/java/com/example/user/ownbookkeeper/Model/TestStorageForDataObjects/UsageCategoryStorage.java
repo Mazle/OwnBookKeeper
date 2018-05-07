@@ -28,6 +28,7 @@ public class UsageCategoryStorage {
             arrayList.add(new Usage("На бензин", null));
             arrayList.add(new Usage("На еду", null));
             arrayList.add(new Usage("Иппотека", null));
+            arrayList.add(new Usage("To the sea",null));
 
 
 

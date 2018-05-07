@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.user.ownbookkeeper.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -30,6 +31,7 @@ public class ContentViewHolder extends RecyclerView.ViewHolder implements View.O
         super(itemView);
         this.mSubj = mSubj;
         itemView.setOnClickListener(this);
+        ButterKnife.bind(this, itemView);
         itemListObservable = Observable.create(new ObservableOnSubscribe<Integer>(){
             @Override
             public void subscribe(@NonNull ObservableEmitter<Integer> e) throws Exception {
